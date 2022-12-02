@@ -40,4 +40,6 @@ public abstract class Transport {
     public void setEngineVolume(float engineVolume) {
         this.engineVolume = ValidationUtils.validOfFloatDefault(engineVolume);
     }
+
+    public abstract boolean service();
 }
