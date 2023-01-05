@@ -1,3 +1,4 @@
+import HW.ExceptionPassword.Data;
 import driver.DriverB;
 import transport.*;
 
@@ -37,6 +38,32 @@ public class Main {
         bus2.defineType();
         bus3.defineType();
 
+        System.out.println();
+
+        //HW1.ExceptionPassword
+        System.out.print("HW.ExceptionPassword: ");
+        boolean success = Data.validate("sgev", "1234", "12345");
+        if (success) {
+            System.out.print("Данные корректны");
+        }
+
+        //HW2.ExceptionTransport
+        service(ladaVesta, ladaPriora, ladaGranta,kamaz2,bus1);
     }
 
+    private static void service(Transport... transports) {
+        for (Transport transport : transports) {
+            serviceTransport(transport);
+        }
+    }
+
+    private static void serviceTransport(Transport transport) {
+        try {
+            if (!transport.service()) {
+                throw new RuntimeException("Транспортное средство " + transport.getBrand() + " " + transport.getModel() + " сервис не прошел");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

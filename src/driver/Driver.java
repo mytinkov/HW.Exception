@@ -8,9 +8,10 @@ public abstract class Driver<T extends Transport>  {
     private int drivingExperience;
     private T car;
 
+
     public Driver(String fullName, String license, int drivingExperience, T car) {
         this.fullName = fullName;
-        this.license = license;
+        setLicense(license);
         this.drivingExperience = drivingExperience;
         this.car = car;
     }
@@ -43,6 +44,13 @@ public abstract class Driver<T extends Transport>  {
 
     public T getCar() {
         return car;
+    }
+
+    public void setLicense(String license) {
+        if (license == null) {
+            throw new IllegalArgumentException("Необходимо указать правильную категорию прав!");
+        }
+        this.license = license;
     }
 
     @Override
